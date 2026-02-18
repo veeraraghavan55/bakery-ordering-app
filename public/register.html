@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: auto; }
+        .strength { margin-top: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Register</h2>
+    <form id="registrationForm">
+        <label for="fullName">Full Name:</label><br>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" oninput="checkPasswordStrength()" required><br>
+        <div class="strength" id="strengthIndicator"></div><br>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms"> I agree to the terms and conditions</label><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+<script>
+    function checkPasswordStrength() {
+        const password = document.getElementById('password').value;
+        const strengthIndicator = document.getElementById('strengthIndicator');
+        let strength = '';
+
+        if (password.length < 6) {
+            strength = 'Weak';
+        } else if (password.match(/[A-Z]/) && password.match(/[0-9]/)) {
+            strength = 'Strong';
+        } else {
+            strength = 'Moderate';
+        }
+
+        strengthIndicator.innerHTML = `Password Strength: ${strength}`;
+    }
+</script>
+</body>
+</html>
